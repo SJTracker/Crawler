@@ -22,7 +22,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('E01', $result->episode);
         $this->assertEquals('720p', $result->quality);
     }
-    
+
     /**
      * @test
      */

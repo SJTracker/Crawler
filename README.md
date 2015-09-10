@@ -6,6 +6,7 @@
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Coding Style Status][ico-styleci]][link-styleci]
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
 PSRs you support to avoid any confusion with users and contributors.
@@ -58,11 +59,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/SJTracker/Crawler.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/SJTracker/Crawler.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/SJTracker/Crawler.svg?style=flat-square
+[ico-styleci]: https://styleci.io/repos/42269020/shield
 
 [link-packagist]: https://packagist.org/packages/SJTracker/Crawler
 [link-travis]: https://travis-ci.org/SJTracker/Crawler
 [link-scrutinizer]: https://scrutinizer-ci.com/g/SJTracker/Crawler/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/SJTracker/Crawler
 [link-downloads]: https://packagist.org/packages/SJTracker/Crawler
+[link-styleci]: https://styleci.io/repos/42269020
 [link-author]: https://github.com/SJTracker
 [link-contributors]: ../../contributors
