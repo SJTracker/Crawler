@@ -1,0 +1,52 @@
+{
+    "name": "SJTracker/Crawler",
+    "description": "SJTracker Crawler component",
+    "keywords": [
+        "SJTracker",
+        "Crawler"
+    ],
+    "homepage": "https://github.com/SJTracker/Crawler",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SJTracker",
+            "email": "replace@mail.com",
+            "homepage": "https://github.com/SJTracker/Crawler",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.5.0",
+        "symfony/dom-crawler": "^2.7",
+        "symfony/css-selector": "^2.7",
+        "guzzlehttp/guzzle": "^6.0",
+        "illuminate/support": "^5.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.4",
+        "phpunit/phpunit": "5.0.*@dev",
+        "phpunit/phpunit-mock-objects": "3.0.*@dev",
+        "phpunit/php-code-coverage": "3.0.*@dev",
+        "sebastian/resource-operations": "1.0.*@dev",
+        "scrutinizer/ocular": "~1.1",
+        "illuminate/filesystem": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SJTracker\\Crawler\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SJTracker\\Crawler\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
