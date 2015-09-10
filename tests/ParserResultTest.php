@@ -33,6 +33,7 @@ class ParserResultTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('share-online.biz', $result->links->first()->hoster);
         $this->assertEquals('https://shareonline.url', $result->links->first()->url);
     }
+
     /**
      * @test
      */
