@@ -35,7 +35,7 @@ class Parser
 
     private function quality($matches)
     {
-        if (!$matches['quality']) {
+        if (! isset($matches['quality'])) {
             return 'SD';
         }
 
