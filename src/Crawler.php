@@ -17,7 +17,7 @@ class Crawler
     /**
      * Dom Crawler.
      *
-     * @var Crawler
+     * @var DomCrawler
      */
     private $crawler;
 
