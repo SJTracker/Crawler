@@ -2,10 +2,9 @@
 
 namespace SJTracker\Crawler\Test;
 
-use GrahamCampbell\TestBench\AbstractTestCase;
 use SJTracker\Crawler\Model\ParserResult;
 
-class ParserResultTest extends AbstractTestCase
+class ParserResultTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

@@ -2,13 +2,12 @@
 
 namespace SJTracker\Crawler\Test;
 
-use GrahamCampbell\TestBench\AbstractTestCase;
 use GuzzleHttp\Client;
 use Mockery;
 use SJTracker\Crawler\Crawler;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 
-class CrawlerTest extends AbstractTestCase
+class CrawlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -26,8 +25,7 @@ class CrawlerTest extends AbstractTestCase
 
         $parser = new Crawler($client, $crawler);
 
-        $episodes = $parser->crawl('url');
-        $this->assertCount(64, $episodes);
-        $this->assertEquals($filtered, implode("\n", $episodes));
+        $this->assertCount(64, $parser->crawl('url'));
+        $this->assertEquals($filtered, implode("\n", $parser->crawl('url')));
     }
 }
