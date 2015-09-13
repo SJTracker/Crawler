@@ -5,6 +5,8 @@ namespace SJTracker\Crawler\Test;
 use GuzzleHttp\Client;
 use Mockery;
 use SJTracker\Crawler\Crawler;
+use SJTracker\Crawler\Model\ParserResult;
+use SJTracker\Crawler\Parser;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 
 class CrawlerTest extends \PHPUnit_Framework_TestCase
@@ -14,18 +16,70 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
      */
     public function it_crawls_all_episodes()
     {
-        $raw = DataLoader::load('sj-season-raw');
         $filtered = DataLoader::load('sj-season-filtered');
+
+        $crawler = $this->getCrawler();
+
+        $this->assertCount(64, $crawler->crawl('url')->raw());
+        $this->assertEquals($filtered, implode("\n", $crawler->crawl('url')->raw()));
+    }
+
+    /**
+     * @test
+     */
+    public function it_parses_the_crawler_result()
+    {
+        $crawler = $this->getCrawler();
+
+        $result = $crawler->crawl('url')->parse();
+
+        $this->assertInstanceOf(ParserResult::class, $result);
+    }
+
+    /**
+     * Get the client mock.
+     *
+     * @return Mockery\MockInterface
+     */
+    protected function getClient()
+    {
+        $raw = DataLoader::load('sj-season-raw');
 
         $client = Mockery::mock(Client::class);
         $client->shouldReceive('get')->with('url')->andReturnSelf()->once();
         $client->shouldReceive('getBody')->andReturn($raw)->once();
 
+        return $client;
+    }
+
+    /**
+     * Get the Parser mock.
+     *
+     * @return Mockery\MockInterface|Parser
+     */
+    private function getParser()
+    {
+        $parser = Mockery::mock(Parser::class);
+        $parser->shouldReceive('parseFromReleaseString')
+            ->andReturn(new ParserResult('The Walking Dead', 'S05', 'E01', '720p'))
+            ->once();
+
+        return $parser;
+    }
+
+    /**
+     * Get the crawler instance.
+     *
+     * @return Mockery\MockInterface|Crawler|Parser
+     */
+    protected function getCrawler()
+    {
+        $client = $this->getClient();
         $crawler = new DomCrawler();
+        $parser = $this->getParser();
 
-        $parser = new Crawler($client, $crawler);
+        $parser = new Crawler($client, $crawler, $parser);
 
-        $this->assertCount(64, $parser->crawl('url'));
-        $this->assertEquals($filtered, implode("\n", $parser->crawl('url')));
+        return $parser;
     }
 }

@@ -8,6 +8,13 @@ use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 class Crawler
 {
     /**
+     * The raw crawled episodes.
+     *
+     * @var array
+     */
+    protected $episodes;
+
+    /**
      * Http Client.
      *
      * @var Client
@@ -22,13 +29,20 @@ class Crawler
     private $crawler;
 
     /**
+     * @var Parser.
+     */
+    private $parser;
+
+    /**
      * @param Client     $client
      * @param DomCrawler $crawler
+     * @param Parser     $parser
      */
-    public function __construct(Client $client, DomCrawler $crawler)
+    public function __construct(Client $client, DomCrawler $crawler, Parser $parser)
     {
         $this->client = $client;
         $this->crawler = $crawler;
+        $this->parser = $parser;
     }
 
     /**
@@ -45,9 +59,25 @@ class Crawler
         $this->crawler->add($body);
 
         $paragraphs = $this->filterPosts();
-        $episodes = $this->filterEpisodes($paragraphs);
 
-        return $episodes;
+        $this->filterEpisodes($paragraphs);
+
+        return $this;
+    }
+
+    public function raw()
+    {
+        return $this->episodes;
+    }
+
+    /**
+     * Parse the crawler result.
+     *
+     * @return Model\ParserResult
+     */
+    public function parse()
+    {
+        return $this->parser->parseFromReleaseString($this->episodes);
     }
 
     /**
@@ -66,8 +96,6 @@ class Crawler
 
     /**
      * @param DomCrawler $paragraph
-     *
-     * @return array
      */
     private function filterEpisodes(DomCrawler $paragraph)
     {
@@ -77,7 +105,7 @@ class Crawler
             return $node->html();
         });
 
-        return $episodes;
+        $this->episodes = $episodes;
     }
 
     /**
