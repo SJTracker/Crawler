@@ -10,26 +10,23 @@
     "authors": [
         {
             "name": "SJTracker",
-            "email": "replace@mail.com",
+            "email": "manuel_st@msn.com",
             "homepage": "https://github.com/SJTracker/Crawler",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : ">=5.6.0",
-        "symfony/dom-crawler": "^2.7",
-        "symfony/css-selector": "^2.7",
-        "guzzlehttp/guzzle": "^6.0",
-        "illuminate/support": "^5.1"
+        "php" : "~7.0",
+        "illuminate/support": "^5.3",
+        "symfony/dom-crawler": "^3.1",
+        "symfony/css-selector": "^3.1",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
-        "mockery/mockery": "^0.9.4",
-        "phpunit/phpunit": "5.0.*@dev",
-        "phpunit/phpunit-mock-objects": "3.0.*@dev",
-        "phpunit/php-code-coverage": "3.0.*@dev",
-        "sebastian/resource-operations": "1.0.*@dev",
-        "scrutinizer/ocular": "~1.1",
-        "illuminate/filesystem": "^5.1"
+        "illuminate/filesystem": "^5.1",
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "~5.0",
+        "squizlabs/php_codesniffer": "^2.3"
     },
     "autoload": {
         "psr-4": {
@@ -38,15 +35,20 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SJTracker\\Crawler\\Test\\": "tests"
+            "SJTracker\\Crawler\\": "tests"
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }

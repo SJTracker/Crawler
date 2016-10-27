@@ -1,6 +1,6 @@
 <?php
 
-namespace SJTracker\Crawler\Test;
+namespace SJTracker\Crawler;
 
 use SJTracker\Crawler\Model\ParserResult;
 use SJTracker\Crawler\Parser;

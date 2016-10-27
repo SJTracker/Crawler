@@ -1,6 +1,6 @@
 <?php
 
-namespace SJTracker\Crawler\Test;
+namespace SJTracker\Crawler;
 
 use Illuminate\Filesystem\Filesystem;
 

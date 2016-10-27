@@ -1,6 +1,6 @@
 <?php
 
-namespace SJTracker\Crawler\Test;
+namespace SJTracker\Crawler;
 
 use GuzzleHttp\Client;
 use Mockery;
@@ -20,8 +20,10 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
 
         $crawler = $this->getCrawler();
 
-        $this->assertCount(64, $crawler->crawl('url')->raw());
-        $this->assertEquals($filtered, implode("\n", $crawler->crawl('url')->raw()));
+        $rawData = $crawler->crawl('url')->raw();
+
+        $this->assertCount(64, $rawData);
+        $this->assertEquals($filtered, implode("\n", $rawData));
     }
 
     /**
